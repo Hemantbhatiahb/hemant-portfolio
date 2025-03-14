@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -84,12 +85,99 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+					},
+					'100%': {
+						opacity: '1',
+					},
+				},
+				'fade-in-up': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(20px)',
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)',
+					},
+				},
+				'fade-in-down': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(-20px)',
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)',
+					},
+				},
+				'fade-out': {
+					'0%': {
+						opacity: '1',
+					},
+					'100%': {
+						opacity: '0',
+					},
+				},
+				'pulse-slow': {
+					'0%, 100%': {
+						opacity: '1',
+					},
+					'50%': {
+						opacity: '0.8',
+					},
+				},
+				'scroll-down': {
+					'0%': {
+						transform: 'translateY(0)',
+						opacity: '0.8',
+					},
+					'100%': {
+						transform: 'translateY(12px)',
+						opacity: '0',
+					},
+				},
+				'scale-up': {
+					'0%': {
+						transform: 'scale(0.96)',
+						opacity: '0',
+					},
+					'100%': {
+						transform: 'scale(1)',
+						opacity: '1',
+					},
+				},
+				'background-shimmer': {
+					'0%': {
+						backgroundPosition: '200% 0',
+					},
+					'100%': {
+						backgroundPosition: '-200% 0',
+					},
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.6s ease-out forwards',
+				'fade-in-up': 'fade-in-up 0.7s ease-out forwards',
+				'fade-in-down': 'fade-in-down 0.7s ease-out forwards',
+				'fade-out': 'fade-out 0.5s ease-out forwards',
+				'pulse-slow': 'pulse-slow 3s infinite',
+				'scroll-down': 'scroll-down 1.5s ease-in-out infinite',
+				'scale-up': 'scale-up 0.5s ease-out forwards',
+				'background-shimmer': 'background-shimmer 8s infinite linear',
+			},
+			fontFamily: {
+				sans: ['Inter var', 'Inter', 'sans-serif'],
+				display: ['SF Pro Display', 'Inter', 'sans-serif'],
+			},
+			transitionTimingFunction: {
+				'out-expo': 'cubic-bezier(0.19, 1, 0.22, 1)',
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
