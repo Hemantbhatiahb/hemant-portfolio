@@ -1,13 +1,45 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import { Sun, Moon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const Index = () => {
+  // Theme state
+  const [theme, setTheme] = useState(() => {
+    // Check for saved theme preference or use system preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) return savedTheme;
+    
+    // Check system preference
+    return window.matchMedia('(prefers-color-scheme: dark)').matches 
+      ? 'dark' 
+      : 'light';
+  });
+
+  // Apply theme when it changes
+  useEffect(() => {
+    const root = window.document.documentElement;
+    
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+    
+    // Save preference to localStorage
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+
   // Initialize intersection observer for animations
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -34,7 +66,22 @@ const Index = () => {
   }, []);
   
   return (
-    <div className="gradient-bg">
+    <div className="gradient-bg min-h-screen transition-colors duration-300">
+      <div className="fixed bottom-6 right-6 z-50">
+        <Button 
+          onClick={toggleTheme} 
+          size="icon"
+          variant="outline"
+          className="rounded-full h-12 w-12 bg-background/80 backdrop-blur-sm border border-border shadow-lg"
+        >
+          {theme === 'dark' ? (
+            <Sun className="h-5 w-5" aria-hidden="true" />
+          ) : (
+            <Moon className="h-5 w-5" aria-hidden="true" />
+          )}
+          <span className="sr-only">Toggle theme</span>
+        </Button>
+      </div>
       <Navbar />
       <Hero />
       <About />
