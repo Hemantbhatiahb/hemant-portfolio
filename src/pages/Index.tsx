@@ -50,6 +50,17 @@ const Index = () => {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     
+    // Apply initial animation to already visible elements
+    document.querySelectorAll('[data-animate]').forEach(el => {
+      const animationClass = el.getAttribute('data-animate');
+      if (animationClass) {
+        // Set a small timeout to ensure elements are rendered first
+        setTimeout(() => {
+          el.classList.add(`animate-${animationClass}`);
+        }, 100);
+      }
+    });
+    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {

@@ -174,12 +174,12 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Add viewport hiding for animation */
+/* Fixed: Make elements with data-animate initially visible */
 [data-animate="fade-in"], 
 [data-animate="fade-in-up"],
 [data-animate="fade-in-down"],
 [data-animate="scale-up"] {
-  opacity: 0;
+  opacity: 1;
 }
 
 /* Add blur effect filter */

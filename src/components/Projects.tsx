@@ -35,6 +35,19 @@ const Projects = () => {
   const sectionRef = useRef<HTMLElement>(null);
   
   useEffect(() => {
+    // Set initial animation class for the elements that are already visible
+    if (sectionRef.current) {
+      sectionRef.current.querySelectorAll('[data-animate]').forEach(el => {
+        const animationClass = el.getAttribute('data-animate');
+        if (animationClass) {
+          // Ensure the element starts with opacity 1 if already in view
+          if (isElementInViewport(el as HTMLElement)) {
+            el.classList.add(`animate-${animationClass}`);
+          }
+        }
+      });
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
@@ -57,6 +70,17 @@ const Projects = () => {
     };
   }, []);
   
+  // Helper function to check if an element is in viewport
+  const isElementInViewport = (el: HTMLElement) => {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  };
+  
   return (
     <section 
       ref={sectionRef}
@@ -72,11 +96,11 @@ const Projects = () => {
       
       <div className="max-w-7xl mx-auto">
         <div className="section-heading text-center">
-          <div className="mb-4" data-animate="fade-in">
+          <div className="mb-4">
             <span className="tag">Portfolio</span>
           </div>
-          <h2 data-animate="fade-in" style={{ animationDelay: '0.1s' }}>Recent Projects</h2>
-          <p className="mx-auto max-w-2xl mt-4" data-animate="fade-in" style={{ animationDelay: '0.2s' }}>
+          <h2>Recent Projects</h2>
+          <p className="mx-auto max-w-2xl mt-4">
             Here are some of my recent projects that showcase my skills and experience in design and development.
           </p>
         </div>
@@ -85,8 +109,6 @@ const Projects = () => {
           {projects.map((project, index) => (
             <div 
               key={index}
-              data-animate="fade-in-up"
-              style={{ animationDelay: `${0.3 + index * 0.1}s` }}
               className={cn(
                 "glass-card overflow-hidden group transition-all duration-300",
                 "hover:shadow-xl"
@@ -127,11 +149,7 @@ const Projects = () => {
           ))}
         </div>
         
-        <div 
-          className="mt-16 text-center"
-          data-animate="fade-in"
-          style={{ animationDelay: '0.8s' }}
-        >
+        <div className="mt-16 text-center">
           <a 
             href="#" 
             className="inline-flex items-center px-6 py-3 text-sm font-medium rounded-full bg-secondary hover:bg-secondary/80 transition-all duration-300"
