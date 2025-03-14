@@ -61,7 +61,7 @@ const Projects = () => {
     <section 
       ref={sectionRef}
       id="projects" 
-      className="relative"
+      className="relative py-16 sm:py-24 md:py-32 px-6 w-full"
     >
       {/* Background elements */}
       <BlurredShape 

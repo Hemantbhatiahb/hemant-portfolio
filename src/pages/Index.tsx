@@ -14,17 +14,22 @@ const Index = () => {
   // Theme state
   const [theme, setTheme] = useState(() => {
     // Check for saved theme preference or use system preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) return savedTheme;
-    
-    // Check system preference
-    return window.matchMedia('(prefers-color-scheme: dark)').matches 
-      ? 'dark' 
-      : 'light';
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) return savedTheme;
+      
+      // Check system preference
+      return window.matchMedia('(prefers-color-scheme: dark)').matches 
+        ? 'dark' 
+        : 'light';
+    }
+    return 'light';
   });
 
   // Apply theme when it changes
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const root = window.document.documentElement;
     
     if (theme === 'dark') {
@@ -43,6 +48,8 @@ const Index = () => {
 
   // Initialize intersection observer for animations
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
