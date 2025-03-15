@@ -127,7 +127,7 @@
 
 @layer components {
   .glass-card {
-    @apply bg-white/80 backdrop-blur-lg dark:bg-black/20 border border-white/20 dark:border-white/10 rounded-xl shadow-lg;
+    @apply bg-white/40 backdrop-blur-md dark:bg-black/20 border border-white/20 dark:border-white/10 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300;
   }
   
   .section-heading {
@@ -135,7 +135,12 @@
   }
   
   .section-heading h2 {
-    @apply mb-3;
+    @apply mb-3 relative inline-block;
+  }
+  
+  .section-heading h2::after {
+    content: '';
+    @apply absolute -bottom-2 left-0 w-2/3 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full;
   }
   
   .section-heading p {
@@ -144,6 +149,10 @@
   
   .tag {
     @apply inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-secondary text-secondary-foreground;
+  }
+  
+  .card-3d {
+    @apply relative transition-all duration-300 hover:transform-style-3d hover:rotate-y-10 hover:rotate-x-5 hover:shadow-2xl;
   }
   
   .button-hover {
@@ -189,11 +198,11 @@ html {
 
 /* Add gradient background */
 .gradient-bg {
-  background: linear-gradient(115deg, #f5f7fa 0%, #f1f4f8 100%);
+  background: linear-gradient(135deg, #f5f7fa 0%, #e6e9f0 100%);
 }
 
 .dark .gradient-bg {
-  background: linear-gradient(115deg, #1a1f2c 0%, #141925 100%);
+  background: linear-gradient(135deg, #1a1f2c 0%, #131622 100%);
 }
 
 .shimmer-bg {
@@ -226,10 +235,106 @@ html {
 }
 
 .scale-on-hover:hover {
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
 /* Custom spacing helper */
 .gap-section {
   gap: clamp(2rem, 5vw, 5rem);
+}
+
+/* 3D perspective */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.rotate-y-10 {
+  transform: rotateY(10deg);
+}
+
+.rotate-x-5 {
+  transform: rotateX(5deg);
+}
+
+/* Smooth gradients for text */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400;
+}
+
+/* Custom animations */
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes float-delay {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-15px) scale(1.03);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes background-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.animate-float {
+  animation: float 15s ease-in-out infinite;
+}
+
+.animate-float-delay {
+  animation: float-delay 12s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* For card hover effects */
+.card-hover {
+  transition: all 0.3s ease-out;
+}
+
+.card-hover:hover {
+  transform: translateY(-10px);
+}
+
+/* Gradient border */
+.gradient-border {
+  position: relative;
+  border-radius: 0.75rem;
+  background-clip: padding-box;
+  padding: 1px;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  margin: -2px;
+  border-radius: inherit;
+  background: linear-gradient(to right, rgba(59, 130, 246, 0.5), rgba(168, 85, 247, 0.5));
+}
+
+/* Cursor dot */
+.cursor-dot {
+  transition: transform 0.15s ease, width 0.15s ease, height 0.15s ease;
 }
