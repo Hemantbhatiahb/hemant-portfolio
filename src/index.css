@@ -152,7 +152,11 @@
   }
   
   .card-3d {
-    @apply relative transition-all duration-300 hover:transform-style-3d hover:rotate-y-10 hover:rotate-x-5 hover:shadow-2xl;
+    @apply relative transition-all duration-300 transform-style-3d shadow-lg hover:shadow-2xl;
+  }
+  
+  .card-3d:hover {
+    transform: rotateY(10deg) rotateX(5deg);
   }
   
   .button-hover {

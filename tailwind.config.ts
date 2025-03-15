@@ -213,5 +213,17 @@ export default {
 			},
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		function({ addUtilities }) {
+			addUtilities({
+				'.transform-style-3d': {
+					'transform-style': 'preserve-3d',
+				},
+				'.backface-visibility-hidden': {
+					'backface-visibility': 'hidden',
+				},
+			});
+		},
+	],
 } satisfies Config;
