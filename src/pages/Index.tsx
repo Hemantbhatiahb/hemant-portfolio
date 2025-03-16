@@ -145,12 +145,12 @@ const Index = () => {
       <div className="fixed bottom-1/4 right-10 w-80 h-80 bg-purple-300/10 dark:bg-purple-500/10 rounded-full blur-3xl animate-float-delay opacity-70 pointer-events-none"></div>
       
       {/* Theme toggle button - repositioned to be fixed in the top-right corner */}
-      <div className="fixed top-6 right-6 z-50">
+      <div className="fixed bottom-6 right-6 z-50">
         <Button 
           onClick={toggleTheme} 
           size="icon"
           variant="outline"
-          className="rounded-full h-10 w-10 bg-background/80 backdrop-blur-sm border border-border shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+          className="rounded-full h-12 w-12 bg-background/80 backdrop-blur-sm border border-border shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
         >
           {theme === 'dark' ? (
             <Sun className="h-5 w-5" aria-hidden="true" />
