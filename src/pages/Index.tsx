@@ -11,9 +11,7 @@ import { Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Index = () => {
-  // Theme state
   const [theme, setTheme] = useState(() => {
-    // Check for saved theme preference or use system preference
     if (typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme) return savedTheme;
@@ -91,11 +89,9 @@ const Index = () => {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     
-    // Apply initial animation to already visible elements
     document.querySelectorAll('[data-animate]').forEach(el => {
       const animationClass = el.getAttribute('data-animate');
       if (animationClass) {
-        // Set a small timeout to ensure elements are rendered first
         setTimeout(() => {
           el.classList.add(`animate-${animationClass}`);
         }, 100);
