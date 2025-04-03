@@ -4,6 +4,7 @@ import BlurredShape from "@/assets/BlurredShape";
 import { Github, Link as LinkIcon, ExternalLink } from "lucide-react";
 import twoFAuth from "../assets/twoFAuth.webp";
 import fitnessImg from "../assets/fitness.png";
+import sketchGuess from "../assets/sketchGuess.png";
 const projects = [
   {
     title: "2Factor Auth npm Library",
@@ -14,6 +15,16 @@ const projects = [
     demoLink: "https://2fa-hemant.vercel.app/login",
     codeLink: "https://www.npmjs.com/package/2fauth",
     technologies: ["React", "Node.js", "MongoDB", "AntDesign"],
+  },
+  {
+    title: "Multiplayer Sketch Guessing Game ",
+    category: "FullStack Development",
+    description:
+      "This is a real-time multiplayer drawing and guessing game built with React, TypeScript, and Socket.io.",
+    image: sketchGuess,
+    demoLink: "https://sketch-guess.vercel.app/",
+    codeLink: "https://github.com/Hemantbhatiahb/sketch-squad",
+    technologies: ["React", "TypeScript", "Socket.io", "Node.JS"],
   },
   {
     title: "Fitness Web App",
