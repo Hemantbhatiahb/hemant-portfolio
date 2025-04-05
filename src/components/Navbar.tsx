@@ -67,7 +67,7 @@ const Navbar = () => {
         <div className="flex items-center">
           <button className="px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium transition-all hover:opacity-90 scale-on-hover">
             <a
-              href="https://drive.google.com/file/d/1czksTZqzwwGKqaYDdfDd5wLI1j0OBeCW/view?usp=sharing"
+              href="https://drive.google.com/file/d/10oxdivTbWIYQY5R927i5jYP4ko2LkXbL/view?usp=drive_link"
               target="_blank"
               rel="noreferrer noopener"
             >
